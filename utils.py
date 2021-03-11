@@ -54,4 +54,4 @@ def ProbInStr(cad,carac):
     return p 
 
 values = [2/5,3/5]
-print(Entropy(values))
+print(Probability("abcc"))
