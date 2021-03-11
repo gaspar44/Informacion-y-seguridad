@@ -30,10 +30,18 @@ def av_cwlen(huffman_dictionary,probability_dictionary):
 
 
     for key, _ in huffman_dictionary.items():
-        average_len = average_len + (probability_dictionary[key] * len(huffman_dictionary[key]) )
+        average_len = average_len + (probability_dictionary[key] * len(huffman_dictionary[key]))
 
     return average_len
 
+def efficiency(message):
+    probability_dictionary = mk_dct(message)
+    huffman_dict = huffman(probability_dictionary)
+    probabilities_of_a_messages = (list(probability_dictionary.values()))
+    entropy_of_message = Entropy(probabilities_of_a_messages)
+    average_len = av_cwlen(huffman_dict, probability_dictionary)
+
+    return entropy_of_message / average_len
 
 def Entropy(S):
     entr = 0
@@ -43,9 +51,8 @@ def Entropy(S):
 
     return entr
 
+my_message = 'AABBCCDD'
 message = 'A_MAN_A_PLAN_A_CANAL_PANAMA'
-probability_dictionary = mk_dct(message)
-huffman_dict = huffman(probability_dictionary)
-#probabilities_of_a_messages = (list(dict_is.values()))
-#entropy_of_message = Entropy(probabilities_of_a_messages)
-print(av_cwlen(huffman_dict, probability_dictionary))
+
+print(efficiency(my_message))
+print(efficiency(message))
